@@ -1,23 +1,17 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
+        dp=[[0]*n for _ in range(m)]
 
-        def inbound(x,y):
-            return x<m and y<n
-        dic ={}
+        dp[m-1][n-1] = 1
 
+        for i in range(m-1,-1,-1):
+            for j in range(n-1,-1,-1):
 
-        def dp(i,j):
-            if not inbound(i,j):
-                return 0
-
-            if i==m-1 and j == n-1:
-                return 1
-            
-            if (i,j) not in dic:
-                dic[(i,j)] = dp(i+1,j) + dp(i,j+1)
-
-            return dic[(i,j)]
+                if i+1<m:
+                    dp[i][j]+=dp[i+1][j]
+                if j+1<n:
+                    dp[i][j]+=dp[i][j+1]
         
-        return dp(0,0)
-    
-    
+
+        return dp[0][0]
+        
