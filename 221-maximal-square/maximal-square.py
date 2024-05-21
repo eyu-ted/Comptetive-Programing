@@ -25,7 +25,7 @@ class Solution:
                     matrix[i][j] += min(bot,min(right,dia)) 
                     maxx= max(maxx,matrix[i][j])
         
-        print(matrix)
+    
         return maxx*maxx
                 
 
