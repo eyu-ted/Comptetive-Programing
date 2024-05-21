@@ -6,9 +6,7 @@ class Solution:
         def dfs(last,pos):
             if pos==goal:
                 return True
-            if pos>goal or pos<=0 :
-                return False
-            if pos not in sett:
+            if pos>goal or pos<=0 or pos not in sett:
                 return False
 
 
