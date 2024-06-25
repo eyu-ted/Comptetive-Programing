@@ -4,8 +4,10 @@ class Solution:
 
     for v, u in richer:
       graph[u].append(v)
+    
+
     @cache
-    def dfs(u: int) -> int:
+    def dfs(u):
       ans = u
 
       for v in graph[u]:
@@ -15,4 +17,8 @@ class Solution:
 
       return ans
 
-    return map(dfs, range(len(graph)))
+    result = []
+    for i in range(len(graph)):
+      result.append(dfs(i))
+    
+    return result 
