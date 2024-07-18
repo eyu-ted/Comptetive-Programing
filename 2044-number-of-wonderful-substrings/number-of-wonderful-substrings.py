@@ -1,18 +1,15 @@
 class Solution:
     def wonderfulSubstrings(self, word: str) -> int:
-        bitmask = 0
-        prefix_count = defaultdict(int)
-        prefix_count[0] = 1
-        result = 0
+        n = 0
+        count = defaultdict(int)
+        count[0] = 1
+        ans = 0
         
-        for char in word:
-            bitmask ^= 1 << (ord(char) - ord('a'))
-            result += prefix_count[bitmask]
-  
+        for ch in word:
+            n ^= 1 <<(ord(ch)-ord('a'))
+            ans+=count[n]
             for i in range(10):
-                result += prefix_count[bitmask ^ (1 << i)]
-                
-
-            prefix_count[bitmask] += 1
+                ans+=count[n ^ (1 << i)]
+            count[n]+=1
         
-        return result
+        return ans
