@@ -1,17 +1,13 @@
 func containsDuplicate(nums []int) bool {
+    sort.Ints(nums)
 
-    dic := make(map[int]bool)
-
-    for _,num := range(nums){
-        if dic[num] == true{
+    for i:=1; i<len(nums) ; i++{
+        if nums[i-1] == nums[i]{
             return true
-        }else{
-            dic[num] = true
 
-            
         }
     }
-    
+
     return false
     
 }
