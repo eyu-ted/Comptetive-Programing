@@ -5,7 +5,7 @@ class UnionFind:
 
     def find(self, u):
         if self.parent[u] != u:
-            self.parent[u] = self.find(self.parent[u])  # Path compression
+            self.parent[u] = self.find(self.parent[u]) 
         return self.parent[u]
 
     def union(self, u, v):
