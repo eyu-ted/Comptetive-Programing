@@ -16,7 +16,6 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if p[j] == '*':
-    
                     noRepeat = dp[i + 1][j - 1]
                     doRepeat = isMatch(i, j - 1) and dp[i][j + 1]
                     dp[i + 1][j + 1] = noRepeat or doRepeat
