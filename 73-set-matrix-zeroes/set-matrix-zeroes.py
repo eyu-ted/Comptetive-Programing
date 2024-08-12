@@ -4,23 +4,13 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
 
-        row =set()
-        col = set()
-
+        posZero=[]
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
-                if matrix[i][j] == 0:
-                    row.add(i)
-                    col.add(j)
-        # print(sett)
-        for i in range(len(matrix)):
-
-            for j in range(len(matrix[0])):
-                if i in row:
-                    matrix[i][j] =0
-
-
-                if j in col:
-                    matrix[i][j] =0
-    
-        
+                if matrix[i][j]==0:
+                    posZero.append([i, j])
+        for i, j in posZero:     
+            for row in range(len(matrix)):
+                matrix[row][j]=0
+            for col in range(len(matrix[0])):
+                matrix[i][col]=0
