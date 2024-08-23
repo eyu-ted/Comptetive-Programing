@@ -1,13 +1,7 @@
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
         
-        
-        matrix= []
-
-        for _ in range(len(grid)):
-            matrix.append([float("inf")]*len(grid[0]))
-
-
+    
         def inbound(x,y):
             return x>-1 and x<len(grid) and y>-1 and y<len(grid[0])
 
