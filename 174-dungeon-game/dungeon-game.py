@@ -1,29 +1,30 @@
 class Solution:
     def calculateMinimumHP(self, dungeon: List[List[int]]) -> int:
-        memo={}
-        col = len(dungeon[0])-1
-        row = len(dungeon)-1
         def inbound(x,y):
-            return x>-1 and x<len(dungeon) and y>-1 and y<len(dungeon[0])
+            return x < len(dungeon) and x>-1 and y < len(dungeon[0]) and y >- 1
+        
 
-        def dfs(i,j):
+        for i in range(len(dungeon)-1,-1,-1):
+            for j in range(len(dungeon[0])-1,-1,-1):
 
-            if not inbound(i,j):
-                return float("-inf")
-            if i==row and j==col:
-                return dungeon[row][col] if dungeon[row][col] <0 else 0
-            
-            if (i,j) in memo:
-                return memo[(i,j)]
+                maxx = float("-inf")
 
-            memo[(i,j)] = max(dfs(i,j+1)+dungeon[i][j],dfs(i+1,j)+dungeon[i][j])
+                if inbound(i,j+1):
+                    maxx = max(maxx , dungeon[i][j+1])
+                
+                if inbound(i+1,j):
+                    maxx = max(maxx , dungeon[i+1][j])
+                
 
-            if memo[(i,j)] >0:
-                memo[(i,j)]=0
-            
+                if maxx == float("-inf"):
+                    maxx =0
+                
+                dungeon[i][j] += maxx
+
+                if dungeon[i][j] > 0:
+                    dungeon[i][j] =0
+        print(dungeon)
+        return (dungeon[0][0]*-1)+1
 
 
-            return memo[(i,j)]
-
-        return abs(dfs(0,0))+1
         
