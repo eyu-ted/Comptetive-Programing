@@ -17,6 +17,6 @@ class Solution:
                     
             
         
-        print(cheap)
+       
 
         return cheap[dst] if cheap[dst] != float("inf") else -1
