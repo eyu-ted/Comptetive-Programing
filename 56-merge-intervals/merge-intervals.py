@@ -6,9 +6,9 @@ class Solution:
         right_bound = intervals[0][1]
 
         res = []
-        print(intervals)
+        intervals = intervals[1:]
 
-        for start,end in intervals[1:]:
+        for start,end in intervals:
             if start <= right_bound:
                 right_bound = max(end,right_bound)
             else:
