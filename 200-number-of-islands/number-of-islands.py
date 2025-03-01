@@ -8,8 +8,6 @@ class Solution:
         count = 0
 
         def bfs(i,j):
-            visited = set()
-            visited.add((i,j))
 
             queue = deque()
             queue.append((i,j))
@@ -21,9 +19,9 @@ class Solution:
 
                 for dr,dc in direction:
                     new_row , new_col = row+dr , col+dc
-                    if inbound(new_row,new_col) and (new_row,new_col) not in visited and grid[new_row][new_col] == "1":
+                    if inbound(new_row,new_col)  and grid[new_row][new_col] == "1":
                         queue.append((new_row,new_col))
-                        visited.add((new_row,new_col))
+                        # visited.add((new_row,new_col))
 
                         
 
