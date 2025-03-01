@@ -15,11 +15,7 @@ class Solution:
         for i in range(len(nums)):
             x = summ(nums[i])
             if x in dic:
-                maxx = max(maxx, nums[i] + nums[dic[x]])
+                maxx = max(maxx, nums[i] + dic[x])
 
-            if x in dic:
-                if nums[dic[x]] < nums[i]:
-                    dic[x] = i  
-            else:
-                dic[x] = i
+            dic[x] = max(nums[i] , dic[x])
         return maxx
