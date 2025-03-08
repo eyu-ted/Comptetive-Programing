@@ -1,30 +1,31 @@
 class Solution:
     def getKth(self, lo: int, hi: int, k: int) -> int:
-        dic = {}
-        dic[1]  = 0
+        
+        memo = {}
+        memo[2] = 1
+
         def dp(num):
-            if num in dic:
-                return dic[num]
+
+            if num in memo:
+                return memo[num]
             
-            if num %2 == 0:
-                val = 1 + dp(num//2)
+            count = 0
+            if num % 2 == 0:
+
+                count = dp(num // 2) + 1 
             else:
-                val = 1 + dp((num * 3) + 1)
+                count = dp(3 * num + 1 ) + 1
             
-            dic[num] = val
-            return dic[num]
-            
-        lis = []
+            memo[num] = count
 
-        for x in range(lo, hi+1):
-            count = dp(x)
-            lis.append([count,x])
-
-            
+            return memo[num]
         
-        lis.sort()
-
-        return lis[k-1][1]
-            
-
+        result = []
+        for nu in range(lo,hi+1):
+            result.append((dp(nu),nu))
         
+        result.sort()
+
+
+        return result[k-1][1]
+
