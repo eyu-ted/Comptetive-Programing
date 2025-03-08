@@ -6,38 +6,46 @@
 #         self.right = right
 class Solution:
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        
         if not root:
             return []
+
         dic = defaultdict(list)
-        
-        def bfs():
+
+        def BFS():
 
             queue = deque()
-            queue.append((root,0))
+            queue.append([root,0])
 
             while queue:
 
-                node , level = queue.popleft()
-
-                dic[level].append(node.val)
+                node, col = queue.popleft()
+                dic[col].append(node.val) 
 
                 if node.left:
-                    queue.append((node.left, level-1))
-                if node.right:
-                    queue.append((node.right, level+1)) 
-            
-            
-        
-        bfs()
 
-        lis = list(dic.items())
-        lis.sort()
+                    queue.append([node.left, col - 1])
+                
+                if node.right:
+
+                    queue.append([node.right, col + 1])
+        
+        BFS()
 
         result = []
-        for arr in lis:
-            result.append(arr[1])
 
+        for _,values in sorted(dic.items()):
+            result.append(values)
+
+        
 
         return result
 
+
         
+
+
+
+
+
+
