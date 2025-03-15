@@ -1,24 +1,15 @@
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
-        
-        paths = []
-        target = len(graph) - 1
 
-
-        def backtrack(path, node):
-
-            if node == target:
-                paths.append(path[:])
-                return 
+        answer = set()
+        def dfs(node, path):
+            if node == len(graph)-1:
+                answer.add(tuple(path))
+                return
             
+            for nei in graph[node]:
+                dfs(nei, path+[nei])
+                
+        dfs(0, [0])
+        return [list(x) for x in answer]
 
-            for neighbor in graph[node]:
-
-                path.append(neighbor)
-                backtrack(path, neighbor)
-                path.pop()
-        
-
-        backtrack([0],0)
-
-        return paths
