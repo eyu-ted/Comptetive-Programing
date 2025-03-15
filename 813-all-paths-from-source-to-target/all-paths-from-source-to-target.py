@@ -1,10 +1,10 @@
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
 
-        answer = set()
+        answer = []
         def dfs(node, path):
             if node == len(graph)-1:
-                answer.add(tuple(path))
+                answer.append(path)
                 return
             
             for nei in graph[node]:
