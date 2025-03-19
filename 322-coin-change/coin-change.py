@@ -1,28 +1,23 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        memo={}
-        
-        def dp(am):
-            
-            if am ==0:
+        cache = {}
+
+        def dfs(am):
+            if am in cache:
+                return cache[am]
+            if am == 0:
                 return 0
-            if am<0:
-                return float("inf")
-            
-            if am not in memo:
-                minn =float("inf")
-                for n in coins:
-                    minn =min(minn,dp(am-n)+1)
-                memo[am] =minn
-            return memo[am]
-        
+            if am < 0:
+                return float('inf') 
 
-        
-        x=dp(amount) 
-   
-        return x if  x!=float("inf") else  -1
-            
-        
-        
+            min_count = float('inf')
+            for coin in coins:
+                res = dfs(am - coin)
+                if res != float('inf'):  
+                    min_count = min(min_count, res + 1)
 
-        
+            cache[am] = min_count
+            return cache[am]
+
+        result = dfs(amount)
+        return result if result != float('inf') else -1
