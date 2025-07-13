@@ -3,7 +3,7 @@ class Solution:
         
         soln_dic = defaultdict(list)
         for word in strs:
-            soln_dic["".join(sorted(list(word)))].append(word)
+            soln_dic["".join(sorted(word))].append(word)
         
         soln = []
         for _, value in soln_dic.items():
