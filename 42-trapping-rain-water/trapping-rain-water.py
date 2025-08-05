@@ -1,22 +1,19 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
 
-        total = 0
         stack = []
-
+        area = 0
         for i in range(len(height)):
-
+            
             while stack and stack[-1][0] < height[i]:
-                pop, _ = stack.pop()
+                bottom,index = stack.pop()
                 if stack:
-                    width = i - stack[-1][1] - 1 
-                    hght = min(height[i],stack[-1][0]) - pop
-                    total += (hght*width)
+                    block1 = stack[-1][0]
+                    h = min(block1,height[i]) - bottom
+                    w = i-stack[-1][1]-1
+                    area += h*w
+                    # print(area,h,w,i) 
+            stack.append((height[i],i))
 
-                
-
-            stack.append((height[i],i)) 
-
-
-        return total
         
+        return area
