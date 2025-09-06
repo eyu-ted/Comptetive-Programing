@@ -10,7 +10,7 @@ class Solution:
         def dfs(root):
             if not root:
                 return TreeNode(val)
-            if root.val >= val:
+            if root.val > val:
                 root.left = dfs(root.left)
             else :
                 root.right = dfs(root.right)
