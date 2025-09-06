@@ -1,16 +1,18 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         
-        soln_dic = defaultdict(list)
-        for word in strs:
-            soln_dic["".join(sorted(word))].append(word)
-        
-        soln = []
-        for _, value in soln_dic.items():
-            soln.append(value)
 
-        return soln
+        dic = defaultdict(list)
 
-        # nat = [n,a,t] = [a,n,t] = [ant] = nat
+        for wrd in strs:
 
-        # tan = [t,a,n] = [a,n,t] = [ant] = nat , tan
+            sett = []
+
+            for ch in wrd:
+                sett.append(ch)
+            
+            sett.sort()
+            
+            dic[tuple(sett)].append(wrd)
+    
+        return [val for key, val in dic.items()]
