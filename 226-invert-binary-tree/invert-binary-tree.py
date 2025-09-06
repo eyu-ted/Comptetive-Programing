@@ -8,21 +8,17 @@ class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
             return root
-        def dfs(root):
+        q = deque()
 
-            temp = root.right
+        q.append(root)
+        while q:
+            node = q.popleft()
 
-            root.right = root.left
+            node.left , node.right = node.right , node.left
 
-            root.left = temp
-
-            if root.left:
-                dfs(root.left)
-            
-            if root.right:
-                dfs(root.right)
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
         
-        dfs(root)
-
         return root
-        
