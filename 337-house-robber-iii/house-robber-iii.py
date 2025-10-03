@@ -6,31 +6,19 @@
 #         self.right = right
 class Solution:
     def rob(self, root: Optional[TreeNode]) -> int:
-        dp = {}
+        @cache
         def dfs(root):
 
             if not root:
                 return 0
             
-            
-
-            if root in dp:
-                return dp[root]
-            
-            current = root.val
+            res = root.val
 
             if root.left:
-                current += dfs(root.left.left) + dfs(root.left.right)
+                res += dfs(root.left.left) + dfs(root.left.right)
             if root.right:
-                current += dfs(root.right.left) + dfs(root.right.right)
+                res += dfs(root.right.left) + dfs(root.right.right)
             
-
-            skip = dfs(root.left) + dfs(root.right)
-
-            dp[root] = max(current,skip)
-             
-
-            return dp[root]
-
+            return max(res, dfs(root.left)+ dfs(root.right))
         
         return dfs(root)
