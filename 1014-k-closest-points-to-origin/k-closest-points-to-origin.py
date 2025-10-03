@@ -6,6 +6,6 @@ class Solution:
         
 
         points.sort(key = myfunct)
-        print(points)
+        
 
         return points[:k]
