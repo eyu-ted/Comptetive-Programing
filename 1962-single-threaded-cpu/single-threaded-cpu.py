@@ -20,8 +20,8 @@ class Solution:
                 time += pt
                 result.append(indx)
             else:
-                if tasks:
-                    time = tasks[0][0]
+                
+                time = tasks[0][0]
         while availble:
             pt,indx = heapq.heappop(availble)
             result.append(indx)
