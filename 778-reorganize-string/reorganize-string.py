@@ -1,27 +1,44 @@
 class Solution:
     def reorganizeString(self, s: str) -> str:
 
-        dic = Counter(s)
-        h = []
-        for ch,val in dic.items():
-            h.append((val*-1, ch))
-        heapify(h)
+        count = Counter(s)
 
-        ans = []
-        q = deque()
+        max_freq = max(count.values())
 
-        while h:
-            cnt , ch = heappop(h)
-            cnt += 1
-            ans.append(ch)
-            q.append((cnt,ch))
-            if len(q) >= 2:
-                val , ch = q.popleft()
-                if val*-1:
-                    heappush(h,(val, ch))
+        if max_freq > ceil(len(s)/2):
+            return ""
         
-        return "" if len(s) != len(ans) else "".join(ans)
-                
-        
+        heap = []
 
+        for key in count:
+            heap.append([-1 * count[key],key])
+        heapq.heapify(heap)
+        
+        
+        result = ""
+
+        while heap:
+            count , ch = heapq.heappop(heap)
+            if result:
+                if result[-1] != ch:
+                    count +=1
+                    result +=ch
+                    if count <0:
+                        heapq.heappush(heap,[count, ch])
+                else:
+                    count2,ch2 = heapq.heappop(heap)
+                    count2 +=1
+                    result +=ch2
+                    if count2 <0:
+                        heapq.heappush(heap,[count2,ch2])
+                    heapq.heappush(heap,[count, ch])
+            else:
+                count +=1
+                result +=ch
+                if count <0:
+                    heapq.heappush(heap,[count, ch])
+
+                    
+
+        return result
         
