@@ -6,7 +6,7 @@ class Solution:
             return lis[0] - lis[1]
 
         
-        costs.sort(key = my)
+        costs.sort(key = lambda x: x[0]-x[1])
         result = 0
         for i in range(len(costs)):
             if i<len(costs)//2:
