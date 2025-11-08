@@ -3,17 +3,19 @@ class Solution:
 
         stack = []
         area = 0
-        for i in range(len(height)):
-            
-            while stack and stack[-1][0] < height[i]:
-                bottom,index = stack.pop()
-                if stack:
-                    block1 = stack[-1][0]
-                    h = min(block1,height[i]) - bottom
-                    w = i-stack[-1][1]-1
-                    area += h*w
-                    # print(area,h,w,i) 
-            stack.append((height[i],i))
 
+        for i in range(len(height)):
+
+            while stack and stack[-1][0] < height[i]:
+                bottom,indx = stack.pop()
+                if stack:
+                    wall = stack[-1][0]
+                    h = min(height[i],wall) -bottom
+                    w = i - stack[-1][1]-1
+                    area += h*w
+                    
+
+            stack.append([height[i],i])
         
+
         return area
