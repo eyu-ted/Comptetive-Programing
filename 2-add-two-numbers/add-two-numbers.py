@@ -5,56 +5,58 @@
 #         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        head_l1 = l1
-        head_l2 = l2
+        dummyNode = ListNode()
 
-        dummy = ListNode(0)
-        ans = dummy
-        carry =0
-
-        while head_l1 and head_l2:
-            if head_l1.val+ head_l2.val + carry < 10:
-                new_node = ListNode(head_l1.val+ head_l2.val + carry )
-                dummy.next = new_node
-                carry = 0
-            else:
-                num = str(head_l1.val + head_l2.val + carry)
-                carry = int(num[0])
-                dummy.next = ListNode(int(num[1]))
-
-            head_l1 = head_l1.next
-            head_l2 = head_l2.next
-            dummy = dummy.next
-
-        if head_l1:
-            while head_l1:
-                if head_l1.val + carry < 10:
-                    new_node = ListNode(head_l1.val + carry )
-                    dummy.next = new_node
-                    carry =0
-                else:
-                    num = str(head_l1.val  + carry)
-                    carry = int(num[0])
-                    dummy.next = ListNode(int(num[1]))
-                head_l1 = head_l1.next
-                dummy = dummy.next
-        if head_l2:
-            while head_l2:
-                if head_l2.val + carry < 10:
-                    new_node = ListNode(head_l2.val + carry )
-                    dummy.next = new_node
-                    carry = 0
-                else:
-                    num = str(head_l2.val  + carry)
-                    carry = int(num[0])
-                    dummy.next = ListNode(int(num[1]))
-                head_l2 = head_l2.next
-                dummy = dummy.next
+        temp = dummyNode
+        rem = 0
+        while l2 or l1:
+            if l2 and l1:
+                summ = l1.val + l2.val +rem
                 
-        if carry:
-            dummy.next = ListNode(carry)
+                
+                if summ >=10:
+                    v = summ%10
+                    rem = 1
+                else:
+                    v =summ
+                    rem = 0
+                
+                temp.next = ListNode(v)
+                temp = temp.next
+                l1 = l1.next
+                l2 = l2.next
+            elif l2:
+                summ = l2.val +rem
+                
+                
+                if summ >=10:
+                    v = summ%10
+                    rem = 1
+                else:
+                    v =summ
+                    rem = 0
+                
+                temp.next = ListNode(v)
+                temp = temp.next
+                l2 = l2.next
+            elif l1:
+                summ = l1.val +rem
+                
+                
+                if summ >=10:
+                    v = summ%10
+                    rem = 1
+                else:
+                    v =summ
+                    rem = 0
+                
+                temp.next = ListNode(v)
+                temp = temp.next
+                l1 = l1.next
+        if rem:
+            temp.next = ListNode(rem)
+        return dummyNode.next
 
+            
 
-        return ans.next
-
-
+            
