@@ -9,12 +9,12 @@ class Solution:
             indgree[a]+=1
         
         q = deque()
-        visited = set()
+        # visited = set()
         result = []
         for i in range(numCourses):
             if i not in indgree:
                 q.append(i)
-                visited.add(i)
+                
                 result.append(i)
 
         
@@ -23,10 +23,10 @@ class Solution:
 
             for neigh in dic[node]:
                 indgree[neigh] -=1
-                if indgree[neigh] == 0 and neigh not in visited:
+                if indgree[neigh] == 0 :
                     q.append(neigh)
                     result.append(neigh)
-                    visited.add(neigh)
+                    # visited.add(neigh)
         
 
                 
