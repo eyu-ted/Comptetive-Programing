@@ -1,28 +1,27 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        self.word = s 
-        longest = ""
+        maxx = 0
+        start = 0
 
         for i in range(len(s)):
-            new_pal = self.possible_palindrome(i,i)
-            if len(new_pal) > len(longest):
-                longest = new_pal
+            # odd
+            l = r = i
+            while l>-1 and r<len(s) and s[l] == s[r]:
+                if r-l+1 > maxx:
+                    maxx = r-l+1
+                    start = l
+                l-=1
+                r+=1
+            # even
+            l =i
+            r =i+1
+            while l>-1 and r<len(s) and s[l] == s[r]:
+                if r-l+1 > maxx:
+                    maxx = r-l+1
+                    start = l
+                l-=1
+                r+=1
+        return s[start:start+maxx]
+
             
-            new_pal_for_even_len = self.possible_palindrome(i,i+1)
-            if len(new_pal_for_even_len) > len(longest):
-                longest = new_pal_for_even_len
         
-        return longest
-
-
-        
-    
-    def possible_palindrome(self,start, end):
-
-        while start>= 0 and end < len(self.word):
-            if self.word[start] != self.word[end]:
-                break
-        
-            start -= 1
-            end += 1
-        return self.word[start+1 : end]
