@@ -7,18 +7,18 @@ class Solution:
 
         for x,y in rectangles:
             dic[y].append(x)
-        for x,y in rectangles:
-            dic[y].sort()
         
+        for key,_ in dic.items():
+            dic[key].sort()
+        
+
+
         result = []
+
         for x,y in points:
-            count = 0
+            tot = 0
             for h in range(y,101):
-
-                count += len(dic[h]) - bisect_left(dic[h],x)
-            
-            result.append(count)
-        
-        return result
-
-            
+                if dic[h]:
+                    tot += ( len(dic[h]) - bisect_left(dic[h], x) )
+            result.append(tot)
+        return result 
