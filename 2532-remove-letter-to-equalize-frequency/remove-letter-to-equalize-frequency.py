@@ -1,7 +1,6 @@
 class Solution:
     def equalFrequency(self, word: str) -> bool:
-        
-        lis = list(word)
+
         count = Counter(word)
         for ch in word:
 
