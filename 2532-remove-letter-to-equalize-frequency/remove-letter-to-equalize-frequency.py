@@ -1,13 +1,13 @@
 class Solution:
     def equalFrequency(self, word: str) -> bool:
+        
+        freq_count = Counter(Counter(word).values())
+        
+        if len(freq_count) == 1: 
+            # check if either every char occured only once 1 in freq_count OR  if all the characters are similar or duplicates 1 in _freq_count.values()
+            return 1 in freq_count or 1 in freq_count.values()
+        
+        elif len(freq_count) == 2: 
 
-        count = Counter(word)
-        for ch in word:
-
-            count[ch] -=1
-            if count[ch] ==0:
-                count.pop(ch)
-            if len(set(count.values())) ==1:
-                return True
-            count[ch] +=1
-        return False
+            return freq_count[1] == 1 or freq_count[min(freq_count) + 1] == 1 
+        return False 
