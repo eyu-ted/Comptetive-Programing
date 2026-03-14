@@ -2,8 +2,7 @@ class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
       
         from heapq import heappop, heappush
-        # intervals=[[110,150],[5,10],[15,20],[0,30],[21,35],[31,40], [100,115],[105,120]]
-        # intervals=[[0,1],[0,2],[0,3]]
+    
         intervals.sort(key=lambda x:x[0])  # O(nlog(n))
         n=len(intervals)
         h=[intervals[0][-1]]
